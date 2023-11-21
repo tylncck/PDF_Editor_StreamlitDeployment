@@ -2,17 +2,11 @@
 
 This is a simple PDF Editor Application that allows users to perform various operations on PDF files, such as merging, compressing, splitting, and inserting one PDF into another. The application is built using Streamlit and leverages the PyPDF2 library for PDF manipulation.
 
-## Docker Container
+The original repository for this application, which is build with Docker images for general purpose deployments, can be reached [tylncck/PDF_Editor](https://github.com/tylncck/PDF_Editor). 
 
-### Installation
-To run the application, make sure you have Docker Desktop installed on your system. Plase visit [Docker Website](https://docs.docker.com/desktop/) for more information. 
+This repository is just a copy of the original repository and tailored for [streamlit.io](https://streamlit.io/) deployments. 
 
-### Building and Running the Container
-1. Open a terminal, navigate to a desired directory to clone this repository. Run `git clone https://github.com/tylncck/PDF_Editor.git`. For this task git must be installed on your local machine. Please follow [Git Website](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for more details. 
-2. This repository comes with `Dockerfile` file. After running the Docker Desktop, all you need is to run following two commands on your terminal or VSCode terminal:
-- `docker build -t pdf_editor_new:final .` This command will build the image with requirements. You can replace `pdf_editor_new:final` with your prefered *name:tag* combination.  
-- `docker run -p 8501:8501 pdf_editor_new:final` This command will run the container together with the application. If you change the name:tag combination in above code, you have to use the same combination here as well. 
-3. Open your browser and navigate to [http://localhost:8501/app](http://localhost:8501/app) to access the PDF Editor Application. 
+This application is running on [editpdfs.streamlit.app](https://editpdfs.streamlit.app/) page for you to explore. 
 
 ## Application Pages
 
