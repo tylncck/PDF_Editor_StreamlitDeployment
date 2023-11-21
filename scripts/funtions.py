@@ -1,9 +1,7 @@
 from PyPDF2 import PdfReader, PdfWriter
 from io import BytesIO
 import os
-from pathlib import Path
-from typing import Union, Literal, List
-
+import ghostscript as gs
 
 def save_file(file_uploader):
     target_directory = 'files'
@@ -48,6 +46,46 @@ def pdf_compress(input_file):
     writer.write(compressed_pdf_stream)
     compressed_pdf_stream.seek(0)
     return compressed_pdf_stream
+
+def pdf_compress_ghost(uploaded_file, output_file_name, pdf_settings='eBook'):
+    if pdf_settings == 'eBook':
+        pdf_settings = '/ebook'
+    elif pdf_settings == 'Screen':
+        pdf_settings = '/screen'
+
+    target_directory = 'files'
+
+    target_path = save_file(uploaded_file)
+
+    # Set the output file path
+    output_file = f'{target_directory}/{output_file_name}'
+
+    # Define Ghostscript settings for compression
+    settings = {
+        'device': 'pdfwrite',
+        'compatibility_level': 1.4,
+        'pdf_settings': pdf_settings,
+        'output_path': output_file,
+        'input_path': target_path
+    }
+
+    # Create Ghostscript arguments
+    args = [
+        "-dSAFER",
+        "-dNOPAUSE",
+        "-dBATCH",
+        f"-sDEVICE={settings['device']}",
+        f"-dCompatibilityLevel={settings['compatibility_level']}",
+        f"-dPDFSETTINGS={settings['pdf_settings']}",
+        f"-sOutputFile={settings['output_path']}",
+        settings['input_path']
+    ]
+
+    # Run Ghostscript
+    gs.Ghostscript(*args)
+
+    # Optionally return the output file path
+    return output_file
 
 def get_pdf_page_count(pdf_file_path):
     with open(pdf_file_path, 'rb') as file:

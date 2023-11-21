@@ -33,7 +33,7 @@ if pdf_file:
     with col3: 
         w_position = st.radio('Select Watermark Position', ('Overlay', 'Underlay'))
     
-    w_path = f'assets/{w_text}_{w_color}.pdf'
+    w_path = f'https://github.com/tylncck/PDF_Editor/blob/main/app/assets/{w_text}_{w_color}.pdf' 
 
     if st.button('Apply Watermark'):
 
