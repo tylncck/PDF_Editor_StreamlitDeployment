@@ -1,9 +1,9 @@
 # importing required packages
 import streamlit as st 
 from st_pages import Page, show_pages
-from streamlit_extras.app_logo import add_logo
+#from streamlit_extras.app_logo import add_logo
 
-add_logo('assets/PDFEditorLogo.jpg')
+#add_logo('assets/PDFEditorLogo.jpg')
 
 # Arranging orders, names and icons for pages including home page. 
 show_pages([Page('app.py', 'Home', '🏠'),
