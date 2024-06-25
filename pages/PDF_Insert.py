@@ -1,10 +1,12 @@
 import streamlit as st
-from scripts.funtions import get_pdf_page_count, pdf_inserter, save_file, delete_pdf_files
+from scripts.funtions import get_pdf_page_count, pdf_inserter, save_file, delete_pdf_files, buy_me_coffee
 
 delete_pdf_files()
 
 st.title('PDF File Inserter')
-st.markdown('''
+
+with st.expander(label='Job Aids'):
+    st.info('''
             Welcome to the PDF file inserter tool! Follow these steps to customize your PDF:
 
             1. **Upload First PDF:** Use the file uploader to upload your first PDF file.
@@ -43,7 +45,7 @@ if pdf_file_1:
             max1 = st.slider('Last page from File 1', min_value=1, max_value=f1_pages, value=f1_pages)
         pagerange1 = (min1, max1)
     else: 
-        st.write('The uploaded file only has 1 page. That page will be used directly as slicing is not possible for the file.')
+        st.warning('The uploaded file only has 1 page. That page will be used directly as slicing is not possible for the file.')
         min1 = 0
         max1 = 1
         pagerange1 = (min1, max1)
@@ -64,7 +66,7 @@ if pdf_file_1:
                 max2 = st.slider('Last page from File 2', min_value=1, max_value=f2_pages, value=f2_pages)
             pagerange2 = (min2, max2)
         else: 
-            st.write('The uploaded file only has 1 page. That page will be used directly as slicing is not possible for the file.')
+            st.warning('The uploaded file only has 1 page. That page will be used directly as slicing is not possible for the file.')
             pagerange2 = (0,1)
         
         max_pos = max1 - min1
@@ -83,6 +85,8 @@ if pdf_file_1:
 
             delete_pdf_files()
 
-            st.write('PDF Files sliced and insterted successfully. Click the button to download the final file')
+            st.success('PDF Files sliced and insterted successfully. Click the button to download the final file')
                     
             st.download_button('Download Final PDF', final_pdf, key='download_pdf', file_name='Final_File.pdf')
+
+st.markdown(buy_me_coffee(), unsafe_allow_html=True)

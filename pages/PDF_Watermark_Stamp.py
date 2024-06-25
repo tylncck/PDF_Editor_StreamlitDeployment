@@ -1,10 +1,12 @@
 import streamlit as st
-from scripts.funtions import save_file, delete_pdf_files, stamp, watermark
+from scripts.funtions import save_file, delete_pdf_files, stamp, watermark, buy_me_coffee
 
 delete_pdf_files()
 
 st.title('PDF Watermarking')
-st.markdown("""
+
+with st.expander(label='Job Aids'):
+    st.info("""
             Welcome to the PDF Watermarking Tool! Use the steps below to customize your PDF with a watermark:
             
             1. **Upload PDF File:** Upload your PDF file using the file uploader.
@@ -41,5 +43,9 @@ if pdf_file:
             final_pdf = stamp(content_path, w_path)
         elif w_position == 'Underlay':
             final_pdf = watermark(content_path, w_path)
-    
+
+        st.success('Selected watermark was added succesfully.')
+
         st.download_button('Download Final PDF', final_pdf, key='download_pdf', file_name='Final_File.pdf')
+
+st.markdown(buy_me_coffee(), unsafe_allow_html=True)

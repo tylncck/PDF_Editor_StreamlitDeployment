@@ -1,5 +1,5 @@
 import streamlit as st
-from scripts.funtions import pdf_compress, delete_pdf_files, save_file, pdf_compress_ghost
+from scripts.funtions import pdf_compress, delete_pdf_files, save_file, pdf_compress_ghost, buy_me_coffee
 import subprocess
 import io 
 import os
@@ -8,7 +8,8 @@ delete_pdf_files()
 
 st.title('Compressing PDFs')
 
-st.markdown(
+with st.expander(label='Job Aids'):
+    st.info(
     '''
     Welcome to the PDF Compression Tool! Choose a compression method and upload your PDF file below. 
     The tool supports two compression methods: **PyPDF2 Compression** and **Ghostscript Compression**.
@@ -23,17 +24,16 @@ st.markdown(
     
     First upload the PDF file you wish to compress. Then click the **Compress PDF** button to start the compression process. 
     The compressed file will be available for download once the process is complete.
-    '''
-)
-
-# Create a radio button to choose the compression method
-compression_method = st.radio('Select Compression Method', ('PyPDF2 Compression', 'Ghostscript Compression'))
-if compression_method == 'Ghostscript Compression':
-    pdf_settings = st.radio('Select Compression Setting', ('eBook', 'Screen'))
+    ''')
 
 uploaded_file = st.file_uploader('Upload your PDF file (single file upload supported)', type=['pdf'], accept_multiple_files=False)
 
 if uploaded_file:
+    # Create a radio button to choose the compression method
+    compression_method = st.radio('Select Compression Method', ('PyPDF2 Compression', 'Ghostscript Compression'))
+    if compression_method == 'Ghostscript Compression':
+        pdf_settings = st.radio('Select Compression Setting', ('eBook', 'Screen'))
+    
     if st.button('Compress PDF'):
         output_file_name = uploaded_file.name.replace('.pdf', '_compressed.pdf')
         if compression_method == 'PyPDF2 Compression':
@@ -49,9 +49,10 @@ if uploaded_file:
         uploaded_file_size = len(uploaded_file.getvalue()) / (1024 * 1024)
         compressed_file_size = len(compressed_pdf.getvalue()) / (1024 * 1024)
 
-        st.write(f'Compressed the uploaded PDF successfully using the {compression_method}. Initial file size {uploaded_file_size:.2f} MB reduced to {compressed_file_size:.2f} MB. Click the button to download the compressed file.')
+        st.success(f'Successfully compressed the uploaded PDF using {compression_method}. Initial file size {uploaded_file_size:.2f} MB reduced to {compressed_file_size:.2f} MB. Click the button to download the compressed file.')
 
         delete_pdf_files()
 
         st.download_button('Download Compressed PDF', compressed_pdf, key='download_pdf', file_name=output_file_name)
 
+st.markdown(buy_me_coffee(), unsafe_allow_html=True)

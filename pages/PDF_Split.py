@@ -1,10 +1,12 @@
 import streamlit as st
-from scripts.funtions import get_pdf_page_count, pdf_split, save_file, delete_pdf_files
+from scripts.funtions import get_pdf_page_count, pdf_split, save_file, delete_pdf_files, buy_me_coffee
 
 delete_pdf_files()
 
 st.title('PDF File Slicing')
-st.markdown('''
+
+with st.expander(label='Job Aids'):
+    st.info('''
             Welcome to the PDF File Slicing Tool! Use the steps below to customize your PDF:
             
             1. **Upload PDF File:** Upload your PDF file using the file uploader.
@@ -44,9 +46,11 @@ if pdf_file:
 
             delete_pdf_files()
 
-            st.write('PDF Files sliced successfully. Click the button to download the final file')
+            st.success('PDF Files sliced successfully. Click the button to download the final file')
                         
             st.download_button('Download Final PDF', final_pdf, key='download_pdf', file_name='Final_File.pdf')
     else:
         delete_pdf_files()
-        st.write('The uploaded file has only 1 page and cannot be sliced. Please upload multi-page file.')
+        st.error('The uploaded file has only 1 page and cannot be sliced. Please upload multi-page file.')
+
+st.markdown(buy_me_coffee(), unsafe_allow_html=True)

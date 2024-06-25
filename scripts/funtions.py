@@ -3,6 +3,34 @@ from io import BytesIO
 import os
 import ghostscript as gs
 
+def buy_me_coffee():
+    text =     """
+    <style>
+    .footer {
+        padding: 10px;
+        text-align: right;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        color: black;
+        font-size: 14px;
+    }
+    .footer a {
+        color: white;
+        text-decoration: none;
+    }
+    </style>
+    <div class="footer">
+        If you want to support my work: 
+        <a href="https://buymeacoffee.com/tylncck" target="_blank">
+            <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee">
+        </a>
+    </div>
+    """
+    return text
+
 def save_file(file_uploader):
     target_directory = 'files'
     os.makedirs(target_directory, exist_ok=True)
