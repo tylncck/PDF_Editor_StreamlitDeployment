@@ -8,7 +8,7 @@ def buy_me_coffee():
     <style>
     .footer {
         padding: 10px;
-        text-align: right;
+        text-align: center;
         position: fixed;
         left: 0;
         bottom: 0;
