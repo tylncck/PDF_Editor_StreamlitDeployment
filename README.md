@@ -8,6 +8,8 @@ This repository is just a copy of the original repository and tailored for [stre
 
 This application is running on [editpdfs.streamlit.app](https://editpdfs.streamlit.app/) page for you to explore. 
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/tylncck)
+
 ## Application Pages
 
 ### Home Page
